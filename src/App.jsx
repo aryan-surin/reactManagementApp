@@ -28,7 +28,13 @@ function App() {
     });
     }
 
-  function handleDeleteTask () {
+  function handleDeleteTask (id) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter(task => task.id !== id),
+      };
+    })
 
   }
   
@@ -89,7 +95,7 @@ function App() {
   return (
     <main className="h-screen my-8 flex gap-8">
       <ProjectsSidebar onStartAddProject={handleStartAddProject} projects={projectsState.projects} onSelectProject={handleSelectProject} />
-      {content}
+      {content} selectedProjectId={projectsState.selectedProjectId}
     </main>
   );
 }
